@@ -1,0 +1,36 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Phase A — cross-site cookie write</title>
+<script>
+  var _elqQ = _elqQ || [];
+  _elqQ.push(['elqSetSiteId', '1194310']);
+  _elqQ.push(['elqUseFirstPartyCookie', 'info.kubotausa.com']);
+  _elqQ.push(['elqTrackPageView', window.location.href]);
+  _elqQ.push(['elqGetCustomerGUID']);
+  (function () {
+    function async_load() {
+      var s = document.createElement('script');
+      s.type='text/javascript'; s.async=true;
+      s.src='https://img03.en25.com/i/elqCfg.min.js';
+      var x=document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s,x);
+    }
+    if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);
+  })();
+</script></head>
+<body style="font:13px/1.5 monospace;margin:12px">
+<strong>Phase A — neutral host, no Eloqua auto-pixel</strong>
+<pre id="log"></pre>
+<script>
+  var n=0;
+  (function poll(){
+    n++;
+    document.getElementById('log').textContent = [
+      'origin   : ' + location.origin,
+      'cookies  : ' + (document.cookie || '(empty)'),
+      'GetElqCustomerGUID : ' + (typeof window.GetElqCustomerGUID),
+      'GUID     : ' + (typeof window.GetElqCustomerGUID==='function' ? (GetElqCustomerGUID()||'(empty)') : 'n/a'),
+      'poll     : ' + n + 's'
+    ].join('\n');
+    if (n < 30) setTimeout(poll, 1000);
+  })();
+</script></body></html>
